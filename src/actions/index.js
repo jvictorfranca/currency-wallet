@@ -10,7 +10,7 @@ const addExpenseAction = (payload) => ({
 );
 
 export const addExpense = (payload) => async (dispatch) => {
-  let data = await fetch(`https://economia.awesomeapi.com.br/json/${payload.currency}`);
+  let data = await fetch('https://economia.awesomeapi.com.br/json/all');
   data = await data.json();
 
   const object = { ...payload, exchangeRates: data };

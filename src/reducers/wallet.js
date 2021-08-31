@@ -3,6 +3,20 @@
 
 const INNITIAL_STATE = {
   expenses: [],
+  total: 0,
+};
+
+const getExpenseValue = (object) => {
+  const value = parseFloat(object.value);
+  let answer;
+  if (object.currency === 'BRL') {
+    answer = value;
+  } else {
+    const { currency } = object;
+    answer = value * parseFloat(object.exchangeRates[currency].ask);
+  }
+  answer = parseFloat(answer.toFixed(2));
+  return answer;
 };
 
 function walletReducer(state = INNITIAL_STATE, action) {
@@ -11,6 +25,9 @@ function walletReducer(state = INNITIAL_STATE, action) {
     return {
       ...state,
       expenses: [...state.expenses, { ...action.payload, id: state.expenses.length }],
+      total: state.expenses.reduce(
+        (acum, expense) => acum + getExpenseValue(expense), 0,
+      ) + getExpenseValue(action.payload),
     };
 
   default:
