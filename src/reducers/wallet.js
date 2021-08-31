@@ -2,15 +2,16 @@
 // Esse reducer será responsável por tratar as informações da pessoa usuária
 
 const INNITIAL_STATE = {
-  email: '',
-  password: '',
-  logged: false,
+  expenses: [],
 };
 
 function walletReducer(state = INNITIAL_STATE, action) {
   switch (action.type) {
-  case 'LOGIN_SUCCESS':
-    return { ...state, ...action.payload, logged: true };
+  case 'ADD_EXPENSE':
+    return {
+      ...state,
+      expenses: [...state.expenses, { ...action.payload, id: state.expenses.length }],
+    };
 
   default:
     return state;
