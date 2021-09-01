@@ -9,6 +9,10 @@ const addExpenseAction = (payload) => ({
   payload }
 );
 
+export const removeExpenseAction = (payload) => ({
+  type: 'REMOVE_EXPENSE', payload,
+});
+
 export const addExpense = (payload) => async (dispatch) => {
   let data = await fetch('https://economia.awesomeapi.com.br/json/all');
   data = await data.json();

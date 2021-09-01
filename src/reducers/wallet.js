@@ -29,6 +29,15 @@ function walletReducer(state = INNITIAL_STATE, action) {
         (acum, expense) => acum + getExpenseValue(expense), 0,
       ) + getExpenseValue(action.payload),
     };
+  case 'REMOVE_EXPENSE':
+    return {
+      ...state,
+      expenses: [...state.expenses.slice(0, action.payload),
+        ...state.expenses.slice(action.payload + 1)],
+      total: state.expenses.reduce(
+        (acum, expense) => acum + getExpenseValue(expense), 0,
+      ) - getExpenseValue(state.expenses[action.payload]),
+    };
 
   default:
     return state;
