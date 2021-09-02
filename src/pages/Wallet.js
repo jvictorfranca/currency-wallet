@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import BuyForm from '../Components/BuyForm';
-import { addExpense } from '../actions';
+import { addExpense, endEditing } from '../actions';
 import Table from '../Components/Table';
 
 class Wallet extends React.Component {
@@ -12,11 +12,17 @@ class Wallet extends React.Component {
       headerCurrencyField: 'BRL',
     };
     this.buttonAction = this.buttonAction.bind(this);
+    this.buttonActionEdit = this.buttonActionEdit.bind(this);
   }
 
   async buttonAction(obj) {
     const { addExpenseFunction } = this.props;
     addExpenseFunction(obj);
+  }
+
+  async buttonActionEdit(obj) {
+    const { editExpenseFunction } = this.props;
+    editExpenseFunction(obj);
   }
 
   render() {
@@ -39,7 +45,7 @@ class Wallet extends React.Component {
             <p data-testid="header-currency-field">{headerCurrencyField}</p>
           </div>
         </header>
-        <BuyForm act={ this.buttonAction } />
+        <BuyForm act={ this.buttonAction } actE={ this.buttonActionEdit } />
         <Table />
       </main>
     );
@@ -54,6 +60,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addExpenseFunction: (obj) => { dispatch(addExpense(obj)); },
+  editExpenseFunction: (obj) => { dispatch(endEditing(obj)); },
 });
 
 Wallet.propTypes = {
@@ -63,6 +70,7 @@ Wallet.propTypes = {
 
   total: PropTypes.number.isRequired,
   addExpenseFunction: PropTypes.func.isRequired,
+  editExpenseFunction: PropTypes.func.isRequired,
 
 };
 

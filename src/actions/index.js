@@ -24,4 +24,12 @@ export const addExpense = (payload) => async (dispatch) => {
   );
 };
 
+export const startEditing = (payload) => ({
+  type: 'START_EDITING', payload,
+});
+
+export const endEditing = (payload) => ({
+  type: 'END_EDITING', payload,
+});
+
 export default logginIn;

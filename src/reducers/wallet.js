@@ -4,6 +4,10 @@
 const INNITIAL_STATE = {
   expenses: [],
   total: 0,
+  editing: {
+    isEditing: false,
+    editingObject: {},
+  },
 };
 
 const getExpenseValue = (object) => {
@@ -37,6 +41,30 @@ function walletReducer(state = INNITIAL_STATE, action) {
       total: state.expenses.reduce(
         (acum, expense) => acum + getExpenseValue(expense), 0,
       ) - getExpenseValue(state.expenses[action.payload]),
+    };
+
+  case 'START_EDITING':
+    return {
+      ...state,
+      editing: {
+        isEditing: true,
+        editingObject: action.payload,
+      },
+    };
+
+  case 'END_EDITING':
+    return {
+      ...state,
+      expenses: [...state.expenses.slice(0, state.editing.editingObject.id),
+        { ...state.editing.editingObject, ...action.payload },
+        ...state.expenses.slice(state.editing.editingObject.id + 1)],
+      editing: {
+        isEditing: false,
+        editingObject: {},
+      },
+      total: state.total
+       + getExpenseValue({ ...state.editing.editingObject, ...action.payload })
+      - getExpenseValue(state.editing.editingObject),
     };
 
   default:

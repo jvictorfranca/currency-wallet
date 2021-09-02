@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TagSelect from './TagSelect';
 
 class BuyForm extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class BuyForm extends React.Component {
       },
     };
     this.handleData = this.handleData.bind(this);
+    this.actB = this.actB.bind(this);
+    this.actE = this.actE.bind(this);
   }
 
   componentDidMount() {
@@ -42,10 +45,38 @@ class BuyForm extends React.Component {
     }));
   }
 
+  actB(form) {
+    const { act } = this.props;
+    act(form);
+    this.setState({
+      form: {
+        value: '',
+        description: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Comida',
+      },
+    });
+  }
+
+  actE(form) {
+    const { actE } = this.props;
+    actE(form);
+    this.setState({
+      form: {
+        value: '',
+        description: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Comida',
+      },
+    });
+  }
+
   render() {
     const { currencies, form } = this.state;
     const { value, description, currency, method, tag } = form;
-    const { act } = this.props;
+    const { actB, actE } = this;
     const hand = this.handleData;
     const d = 'description';
     return (
@@ -53,7 +84,7 @@ class BuyForm extends React.Component {
         ? (
           <form action="GET">
             <label htmlFor="value">
-              valor
+              Valor
               <input id="value" name="value" value={ value } onChange={ hand } />
             </label>
             <label htmlFor={ d }>
@@ -77,17 +108,16 @@ class BuyForm extends React.Component {
                 <option value="Cartão de débito">Cartão de débito</option>
               </select>
             </label>
-            <label htmlFor="tag">
-              Tag
-              <select name="tag" id="tag" value={ tag } onChange={ hand }>
-                <option value="Comida">Alimentação</option>
-                <option value="Lazer">Lazer</option>
-                <option value="Saúde"> Saúde </option>
-                <option value="Trabalho">Trabalho</option>
-                <option value="Transporte">Transporte</option>
-              </select>
-            </label>
-            <button type="button" onClick={ () => act(form) }>Adicionar despesa</button>
+            <TagSelect value={ tag } onChange={ hand } />
+
+            <button type="button" onClick={ () => actB(form) }>Adicionar despesa</button>
+            <button
+              type="button"
+              onClick={ () => actE(form) }
+            >
+              Editar despesa
+
+            </button>
           </form>)
         : <p>Loading...</p>
     );
@@ -96,6 +126,7 @@ class BuyForm extends React.Component {
 
 BuyForm.propTypes = {
   act: PropTypes.func.isRequired,
+  actE: PropTypes.func.isRequired,
 };
 
 export default BuyForm;

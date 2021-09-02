@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeExpenseAction } from '../actions';
+import TableItem from './TableItem';
 
 class Table extends React.Component {
   getValue(expense) {
@@ -31,30 +32,11 @@ class Table extends React.Component {
           </tr>
 
           {expenses.map((expense, index) => (
-            <tr key={ expense.id }>
-              <td>{expense.description}</td>
-              <td>{expense.tag}</td>
-              <td>{expense.method}</td>
-              <td>{expense.value}</td>
-              <td>{expense.exchangeRates[expense.currency].name}</td>
-              <td>
-                {parseFloat(
-                  expense.exchangeRates[expense.currency].ask,
-                ).toFixed(2)}
-              </td>
-              <td>{this.getValue(expense)}</td>
-              <td>Real</td>
-              <td>
-                <button
-                  type="button"
-                  onClick={ () => remove(index) }
-                  data-testid="delete-btn"
-                >
-                  Remove
-                </button>
-
-              </td>
-            </tr>
+            <TableItem
+              expense={ expense }
+              onClick={ () => remove(index) }
+              key={ expense.id }
+            />
           ))}
 
         </tbody>
