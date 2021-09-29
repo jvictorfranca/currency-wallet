@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/currency-wallet/static/css/main.726f9e79.chunk.css",
+    "main.js": "/currency-wallet/static/js/main.03f874c7.chunk.js",
+    "main.js.map": "/currency-wallet/static/js/main.03f874c7.chunk.js.map",
+    "runtime-main.js": "/currency-wallet/static/js/runtime-main.8f090066.js",
+    "runtime-main.js.map": "/currency-wallet/static/js/runtime-main.8f090066.js.map",
+    "static/js/2.f00acdc6.chunk.js": "/currency-wallet/static/js/2.f00acdc6.chunk.js",
+    "static/js/2.f00acdc6.chunk.js.map": "/currency-wallet/static/js/2.f00acdc6.chunk.js.map",
+    "index.html": "/currency-wallet/index.html",
+    "precache-manifest.b6344b66ab10b48c33656aad784a61d4.js": "/currency-wallet/precache-manifest.b6344b66ab10b48c33656aad784a61d4.js",
+    "service-worker.js": "/currency-wallet/service-worker.js",
+    "static/css/main.726f9e79.chunk.css.map": "/currency-wallet/static/css/main.726f9e79.chunk.css.map",
+    "static/js/2.f00acdc6.chunk.js.LICENSE.txt": "/currency-wallet/static/js/2.f00acdc6.chunk.js.LICENSE.txt",
+    "static/media/wallet-styles.css": "/currency-wallet/static/media/dark-leather.aca7ff17.png",
+    "static/media/wallet.png": "/currency-wallet/static/media/wallet.5ea122d6.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8f090066.js",
+    "static/js/2.f00acdc6.chunk.js",
+    "static/css/main.726f9e79.chunk.css",
+    "static/js/main.03f874c7.chunk.js"
+  ]
+}
