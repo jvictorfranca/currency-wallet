@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TagSelect from './TagSelect';
+
+import './table-form-styles.css';
 
 class BuyForm extends React.Component {
   constructor(props) {
@@ -73,16 +76,19 @@ class BuyForm extends React.Component {
     });
   }
 
+  // eslint-disable-next-line max-lines-per-function
   render() {
     const { currencies, form } = this.state;
+    const { editing } = this.props;
     const { value, description, currency, method, tag } = form;
     const { actB, actE } = this;
     const hand = this.handleData;
     const d = 'description';
+    console.log(editing);
     return (
       currencies.length > 1
         ? (
-          <form action="GET">
+          <form action="GET" className="add-currency-form">
             <label htmlFor="value">
               Valor
               <input id="value" name="value" value={ value } onChange={ hand } />
@@ -101,7 +107,7 @@ class BuyForm extends React.Component {
               </select>
             </label>
             <label htmlFor="method">
-              método de pagamento
+              Método de pagamento
               <select name="method" id="method" value={ method } onChange={ hand }>
                 <option value="Dinheiro">Dinheiro</option>
                 <option value="Cartão de crédito">Cartão de crédito</option>
@@ -109,24 +115,32 @@ class BuyForm extends React.Component {
               </select>
             </label>
             <TagSelect value={ tag } onChange={ hand } />
-
-            <button type="button" onClick={ () => actB(form) }>Adicionar despesa</button>
-            <button
-              type="button"
-              onClick={ () => actE(form) }
-            >
-              Editar despesa
-
-            </button>
+            {!editing && (
+              <button type="button" onClick={ () => actB(form) }>
+                Adicionar despesa
+              </button>)}
+            {editing
+            && (
+              <button
+                type="button"
+                onClick={ () => actE(form) }
+              >
+                Editar despesa
+              </button>)}
           </form>)
         : <p>Loading...</p>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  editing: state.wallet.editing.isEditing,
+});
+
 BuyForm.propTypes = {
   act: PropTypes.func.isRequired,
   actE: PropTypes.func.isRequired,
+  editing: PropTypes.bool.isRequired,
 };
 
-export default BuyForm;
+export default connect(mapStateToProps)(BuyForm);

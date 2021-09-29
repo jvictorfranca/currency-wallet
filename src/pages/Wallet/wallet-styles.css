@@ -1,0 +1,7 @@
+.wallet-header {
+  background-color: rgb(111, 53, 53);
+  background-image: url('../../images/dark-leather.png');
+  color: rgb(94, 155, 94);
+  font-size: 20px;
+  padding: 10px 20px;
+}

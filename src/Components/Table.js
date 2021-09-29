@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { removeExpenseAction } from '../actions';
 import TableItem from './TableItem';
 
+import './table-form-styles.css';
+
 class Table extends React.Component {
   getValue(expense) {
     const { value, exchangeRates, currency } = expense;
@@ -17,7 +19,7 @@ class Table extends React.Component {
   render() {
     const { expenses, remove } = this.props;
     return (
-      <table>
+      <table className="currency-tables">
         <tbody>
           <tr>
             <th>Descrição</th>

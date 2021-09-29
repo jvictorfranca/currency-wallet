@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import logginIn from '../actions';
+
+import logginIn from '../../actions';
+
+import './loginStyle.css';
+
+import wallet from '../../images/wallet.png';
 
 class Login extends React.Component {
   constructor(props) {
@@ -75,8 +80,9 @@ class Login extends React.Component {
       email, password,
     };
     return (
-      <main>
-        <form action="GET">
+      <main className="login-main">
+        <img src={ wallet } alt="Wallet" className="wallet-img" />
+        <form action="GET" className="login-form">
           <label htmlFor="email">
             Email:
             <input
@@ -89,7 +95,7 @@ class Login extends React.Component {
           </label>
 
           <label htmlFor="password">
-            password:
+            Password:
             <input
               type="password"
               name="password"

@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import BuyForm from '../Components/BuyForm';
-import { addExpense, endEditing } from '../actions';
-import Table from '../Components/Table';
+import BuyForm from '../../Components/BuyForm';
+import { addExpense, endEditing } from '../../actions';
+import Table from '../../Components/Table';
+
+import './wallet-styles.css';
 
 class Wallet extends React.Component {
   constructor(props) {
@@ -30,17 +32,24 @@ class Wallet extends React.Component {
     const { email } = userState;
     const { headerCurrencyField } = this.state;
     console.log(total);
+    const totalFormated = Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(total);
+    console.log(totalFormated);
     return (
       <main>
-        <header>
-          <div data-testid="email-field">
+        <header className="wallet-header">
+          <div
+            data-testid="email-field"
+            className="email-field"
+          >
             Email:
-            {' '}
             {email}
           </div>
           <div>
             <p data-testid="total-field">
-              {total || 0}
+              {totalFormated || 'R$ 0,00'}
             </p>
             <p data-testid="header-currency-field">{headerCurrencyField}</p>
           </div>
