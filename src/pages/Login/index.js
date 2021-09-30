@@ -12,10 +12,10 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      emailAutentication: false,
-      passwordAutentication: false,
+      email: 'usuario@email.com',
+      password: 'Essaeumaboasenha!',
+      emailAutentication: true,
+      passwordAutentication: true,
     };
 
     this.handleData = this.handleData.bind(this);

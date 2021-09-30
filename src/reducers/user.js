@@ -1,8 +1,8 @@
 // Esse reducer será responsável por tratar as informações da pessoa usuária
 
 const INNITIAL_STATE = {
-  email: '',
-  password: '',
+  email: 'usuario@email.com',
+  password: 'Essaeumaboasenha!',
   logged: false,
 };
 
